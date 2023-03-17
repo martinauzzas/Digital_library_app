@@ -29,10 +29,10 @@ def create_book(current_user_token):
 
 @api.route('/books', methods = ['GET'])
 @token_required
-def get_book(current_user_token):
+def get_books(current_user_token):
     a_user = current_user_token.token 
     books = Book.query.filter_by(user_token = a_user).all()
-    response = book_schema.dump(books)
+    response = books_schema.dump(books)
     return jsonify(response)
 
 @api.route('/books/<isbn>', methods = ['GET'])
